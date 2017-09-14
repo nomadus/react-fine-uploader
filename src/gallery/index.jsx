@@ -90,7 +90,7 @@ class Gallery extends Component {
         const retryButtonProps = getComponentProps('retryButton', this.props)
         const statusProps = getComponentProps('status', this.props)
         const thumbnailProps = getComponentProps('thumbnail', this.props)
-        const { submittedFiles, uploader } = this.props.uploader
+        const { submittedFiles, uploader } = this.props
 
         const chunkingEnabled = uploader.options.chunking && uploader.options.chunking.enabled
         const deleteEnabled = uploader.options.deleteFile && uploader.options.deleteFile.enabled
