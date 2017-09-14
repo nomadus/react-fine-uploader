@@ -92,6 +92,8 @@ class Gallery extends Component {
         const thumbnailProps = getComponentProps('thumbnail', this.props)
         const { submittedFiles, uploader } = this.props
 
+        console.log('The list of submitted files ', submittedFiles);
+
         const chunkingEnabled = uploader.options.chunking && uploader.options.chunking.enabled
         const deleteEnabled = uploader.options.deleteFile && uploader.options.deleteFile.enabled
         const deleteButtonProps = deleteEnabled && getComponentProps('deleteButton', this.props)
@@ -340,8 +342,10 @@ const isFileGone = (statusToCheck, statusEnum) => {
 }
 
 const arrayObjectIndexOf = (array, searchText, property) => {
-    for (var i = 0; i < array.length; i++) {
-        if (array[i][property] === searchText) return i;
+    if (array) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i][property] === searchText) return i;
+        }
     }
     return -1;
 }
