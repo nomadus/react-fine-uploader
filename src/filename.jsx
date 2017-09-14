@@ -25,11 +25,17 @@ class Filename extends Component {
         console.log('The url passed is', this.props.url);
         console.log('The file name is ', this.state.filename);
         return (
-            <a href={this.props.url} alt={this.state.filename}>
-                <span className={`react-fine-uploader-filename ${this.props.className || ''}`}>
-                    {this.state.filename}
-                </span>
-            </a>
+            <div>
+                {this.props.url ?
+                    <a href={this.props.url} alt={this.state.filename}>
+                        {this.state.filename}
+                    </a>
+                    :
+                    <span className={`react-fine-uploader-filename ${this.props.className || ''}`}>
+                        {this.state.filename}
+                    </span>
+                }
+            </div>
 
         )
     }
