@@ -155,7 +155,7 @@ class Gallery extends Component {
                                     <Filename className='react-fine-uploader-gallery-filename'
                                         id={id}
                                         uploader={uploader}
-                                        url={arrayObjectIndexOf(submittedFiles,
+                                        url={getFileUrl(submittedFiles,
                                             uploader.methods.getUuid(id),
                                             'uuid')}
                                         { ...filenameProps }
@@ -341,13 +341,15 @@ const isFileGone = (statusToCheck, statusEnum) => {
     ].indexOf(statusToCheck) >= 0
 }
 
-const arrayObjectIndexOf = (array, searchText, property) => {
+const getFileUrl = (array, searchText, property) => {
     if (array) {
         for (var i = 0; i < array.length; i++) {
-            if (array[i][property] === searchText) return i;
+            if (array[i][property] === searchText) {
+                return array[i]['url'];
+            }
         }
     }
-    return -1;
+    return null;
 }
 
 export default Gallery
