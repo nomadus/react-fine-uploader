@@ -23,6 +23,7 @@ class Filename extends Component {
 
     render() {
         console.log('The url passed is', this.props.url);
+        console.log('The file name is ', this.state.filename);
         return (
             <div>
                 {this.props.url ?
