@@ -97,6 +97,10 @@ class Gallery extends Component {
         const deleteButtonProps = deleteEnabled && getComponentProps('deleteButton', this.props)
         const pauseResumeButtonProps = chunkingEnabled && getComponentProps('pauseResumeButton', this.props)
 
+        console.log('filenameProps', filenameProps);
+        console.log('thumbnailProps', thumbnailProps);
+        console.log('fileInputProps', fileInputProps);
+
         return (
             <MaybeDropzone content={ this.props.children }
                            hasVisibleFiles={ this.state.visibleFiles.length > 0 }
