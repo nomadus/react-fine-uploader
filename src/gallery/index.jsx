@@ -45,14 +45,10 @@ class Gallery extends Component {
         super(props)
 
         this.state = {
-            visibleFiles: [],
-            urls: props.uploader.methods._thumbnailUrls() || []
+            visibleFiles: []
         }
 
         const statusEnum = props.uploader.qq.status
-
-        console.log('props', props);
-        console.log('urls', props.uploader.methods._thumbnailUrls());
 
         this._onStatusChange = (id, oldStatus, status) => {
             const visibleFiles = this.state.visibleFiles
@@ -94,7 +90,7 @@ class Gallery extends Component {
         const retryButtonProps = getComponentProps('retryButton', this.props)
         const statusProps = getComponentProps('status', this.props)
         const thumbnailProps = getComponentProps('thumbnail', this.props)
-        const uploader = this.props.uploader
+        const { submittedFiles, uploader } = this.props.uploader
 
         const chunkingEnabled = uploader.options.chunking && uploader.options.chunking.enabled
         const deleteEnabled = uploader.options.deleteFile && uploader.options.deleteFile.enabled
@@ -157,6 +153,9 @@ class Gallery extends Component {
                                     <Filename className='react-fine-uploader-gallery-filename'
                                         id={id}
                                         uploader={uploader}
+                                        url={arrayObjectIndexOf(submittedFiles,
+                                            uploader.methods.getUuid(id),
+                                            'uuid')}
                                         { ...filenameProps }
                                     />
                                     <Status className='react-fine-uploader-gallery-status'
@@ -338,6 +337,13 @@ const isFileGone = (statusToCheck, statusEnum) => {
         statusEnum.CANCELED,
         statusEnum.DELETED,
     ].indexOf(statusToCheck) >= 0
+}
+
+const arrayObjectIndexOf = (array, searchText, property) => {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i][property] === searchText) return i;
+    }
+    return -1;
 }
 
 export default Gallery
