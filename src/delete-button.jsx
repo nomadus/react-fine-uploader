@@ -6,7 +6,6 @@ class DeleteButton extends Component {
         children: PropTypes.node,
         id: PropTypes.number.isRequired,
         onlyRenderIfDeletable: PropTypes.bool,
-        status: PropTypes.string,
         uploader: PropTypes.object.isRequired
     };
 
@@ -18,8 +17,8 @@ class DeleteButton extends Component {
         super(props)
 
         this.state = {
-            deletable: props.status === 'upload successful' || false,
-            deleting: props.status === 'upload successful' || false,
+            deletable: true,
+            deleting: false,
         }
 
         const statusEnum = props.uploader.qq.status
@@ -45,10 +44,7 @@ class DeleteButton extends Component {
             }
         }
 
-        this._onClick = () => {
-            console.log('Deleting', this.props.id);
-            this.props.uploader.methods.deleteFile(this.props.id);
-        }
+        this._onClick = () => this.props.uploader.methods.deleteFile(this.props.id);
     }
 
     componentDidMount() {
@@ -63,6 +59,7 @@ class DeleteButton extends Component {
     render() {
         const { children, onlyRenderIfDeletable, id, uploader, ...elementProps } = this.props // eslint-disable-line no-unused-vars
         const content = children || 'Delete'
+        console.log('props', this.props);
 
         if (this.state.deletable || this.state.deleting || !onlyRenderIfDeletable) {
             return (

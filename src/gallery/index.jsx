@@ -187,7 +187,6 @@ class Gallery extends Component {
                                     deleteEnabled &&
                                     <DeleteButton className='react-fine-uploader-gallery-delete-button'
                                         id={id}
-                                        status={status}
                                         uploader={uploader}
                                         { ...deleteButtonProps }
                                     />
