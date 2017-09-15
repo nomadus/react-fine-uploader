@@ -84,6 +84,7 @@ class DeleteButton extends Component {
 }
 
 const isDeletable = (statusToCheck, statusEnum) => {
+    console.log('statusToCheck', statusToCheck, statusEnum);
     return [
         statusEnum.DELETE_FAILED,
         statusEnum.UPLOAD_SUCCESSFUL
