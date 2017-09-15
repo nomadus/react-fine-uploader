@@ -17,7 +17,7 @@ class DeleteButton extends Component {
         super(props)
 
         this.state = {
-            deletable: false,
+            deletable: true,
             deleting: false,
         }
 
