@@ -24,8 +24,8 @@ class DeleteButton extends Component {
         const statusEnum = props.uploader.qq.status
 
         this._onStatusChange = (id, oldStatus, newStatus) => {
-            if (id === this.props.id && !this._unmounted) {
-                console.log('statusToCheck2', id, isDeletable(newStatus, statusEnum), newStatus, this._unmounted);
+            console.log('id', id, isDeletable(newStatus, statusEnum), newStatus, this._unmounted);
+            if (id === this.props.id && !this._unmounted) {            
 
                 if (!isDeletable(newStatus, statusEnum) && newStatus !== statusEnum.DELETING && this.state.deletable) {
 
@@ -67,7 +67,7 @@ class DeleteButton extends Component {
         const { children, onlyRenderIfDeletable, id, uploader, ...elementProps } = this.props // eslint-disable-line no-unused-vars
         const content = children || 'Delete'
         console.log('state', this.state);
-        console.log('state', JSON.stringify(this.props), onlyRenderIfDeletable);
+        console.log('props', this.props, onlyRenderIfDeletable);
 
         if (this.state.deletable || this.state.deleting || !onlyRenderIfDeletable) {
             return (
