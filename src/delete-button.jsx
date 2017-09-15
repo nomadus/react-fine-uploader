@@ -26,7 +26,10 @@ class DeleteButton extends Component {
         this._onStatusChange = (id, oldStatus, newStatus) => {
             console.log('statusToCheck', id, oldStatus, newStatus);
             if (id === this.props.id && !this._unmounted) {
+
                 if (!isDeletable(newStatus, statusEnum) && newStatus !== statusEnum.DELETING && this.state.deletable) {
+                    console.log('statusToCheck2', id, isDeletable(newStatus, statusEnum), newStatus, this._unmounted);
+
                     !this._unmounted && this.setState({
                         deletable: false,
                         deleting: false
