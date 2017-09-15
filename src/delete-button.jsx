@@ -17,11 +17,13 @@ class DeleteButton extends Component {
         super(props)
 
         this.state = {
-            deletable: false,
-            deleting: false
+            deletable: props.status === 'upload successful' || false,
+            deleting: props.status === 'upload successful' || false,
         }
 
-        const statusEnum =  props.uploader.qq.status
+        const statusEnum = props.uploader.qq.status
+
+        console.log('statusEnum', statusEnum);
 
         this._onStatusChange = (id, oldStatus, newStatus) => {
             console.log('status change delete', id, oldStatus, newStatus);
@@ -67,13 +69,13 @@ class DeleteButton extends Component {
         if (this.state.deletable || this.state.deleting || !onlyRenderIfDeletable) {
             return (
                 <button aria-label='delete'
-                        className={ `react-fine-uploader-delete-button ${this.props.className || ''}` }
-                        disabled={ !this.state.deletable || this.state.deleting }
-                        onClick={ this.state.deletable && !this.state.deleting && this._onClick }
-                        type='button'
-                        { ...elementProps }
+                    className={`react-fine-uploader-delete-button ${this.props.className || ''}`}
+                    disabled={!this.state.deletable || this.state.deleting}
+                    onClick={this.state.deletable && !this.state.deleting && this._onClick}
+                    type='button'
+                    { ...elementProps }
                 >
-                    { content }
+                    {content}
                 </button>
             )
         }
