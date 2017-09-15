@@ -97,8 +97,6 @@ class Gallery extends Component {
         const deleteButtonProps = deleteEnabled && getComponentProps('deleteButton', this.props)
         const pauseResumeButtonProps = chunkingEnabled && getComponentProps('pauseResumeButton', this.props)
 
-        console.log('deleteButtonProps', deleteButtonProps);
-
         return (
             <MaybeDropzone content={this.props.children}
                 hasVisibleFiles={this.state.visibleFiles.length > 0}
@@ -171,23 +169,24 @@ class Gallery extends Component {
                                         { ...filesizeProps }
                                     />
                                 </div>
-                                {/* <CancelButton className='react-fine-uploader-gallery-cancel-button'
+                                <CancelButton className='react-fine-uploader-gallery-cancel-button'
                                     id={id}
                                     uploader={uploader}
                                     { ...cancelButtonProps }
-                                /> */}
+                                />
                                 <RetryButton className='react-fine-uploader-gallery-retry-button'
                                     id={id}
                                     uploader={uploader}
                                     { ...retryButtonProps }
                                 />
-
-                                <DeleteButton className='react-fine-uploader-gallery-delete-button'
-                                    id={id}
-                                    uploader={uploader}
-                                    { ...deleteButtonProps }
-                                />
-
+                                {
+                                    deleteEnabled &&
+                                    <DeleteButton className='react-fine-uploader-gallery-delete-button'
+                                        id={id}
+                                        uploader={uploader}
+                                        { ...deleteButtonProps }
+                                    />
+                                }
                                 {
                                     chunkingEnabled &&
                                     <PauseResumeButton className='react-fine-uploader-gallery-pause-resume-button'
