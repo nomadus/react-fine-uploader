@@ -45,6 +45,8 @@ class DeleteButton extends Component {
                 else if (newStatus === statusEnum.DELETING && !this.state.deleting) {
                     this.setState({ deleting: true })
                 }
+
+                console.log('statusToCheck', deletable, deleting, isDeletable(newStatus, statusEnum), this._unmounted);
             }
         }
 
