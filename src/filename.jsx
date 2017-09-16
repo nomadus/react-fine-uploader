@@ -14,7 +14,6 @@ class Filename extends Component {
         this.state = {
             filename: props.uploader.methods.getName(props.id)
         }
-        console.log('uploads', props.uploader.methods.getUploads({ id: props.id }));
 
         this._interceptSetName()
 
@@ -33,7 +32,7 @@ class Filename extends Component {
         return (
             <div>
                 {this.props.url ?
-                    <a href={this.props.url} alt={this.state.filename}>
+                    <a href={this.props.url} alt={this.state.filename} target='_blank'>
                         <span className={`react-fine-uploader-filename ${this.props.className || ''}`}>
                             {this.state.filename}
                         </span>
