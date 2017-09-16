@@ -48,6 +48,8 @@ class Gallery extends Component {
             visibleFiles: props.uploader.methods.getUploads()||[]
         }
 
+        console.log('gallery', props.uploader.methods.getUploads());
+
         const statusEnum = props.uploader.qq.status
 
         this._onStatusChange = (id, oldStatus, status) => {
