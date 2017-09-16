@@ -45,10 +45,8 @@ class Gallery extends Component {
         super(props)
 
         this.state = {
-            visibleFiles: props.uploader.methods.getUploads()||[]
+            visibleFiles: props.uploader.methods.getUploads() || []
         }
-
-        console.log('gallery', props.uploader.methods.getUploads());
 
         const statusEnum = props.uploader.qq.status
 
@@ -95,9 +93,7 @@ class Gallery extends Component {
         const { submittedFiles, uploader } = this.props
 
         const chunkingEnabled = uploader.options.chunking && uploader.options.chunking.enabled
-        const cancelEnabled = uploader.options.cancelFile && uploader.options.cancelFile.enabled
         const deleteEnabled = uploader.options.deleteFile && uploader.options.deleteFile.enabled
-
         const deleteButtonProps = deleteEnabled && getComponentProps('deleteButton', this.props)
         const pauseResumeButtonProps = chunkingEnabled && getComponentProps('pauseResumeButton', this.props)
 
@@ -173,13 +169,11 @@ class Gallery extends Component {
                                         { ...filesizeProps }
                                     />
                                 </div>
-                                {cancelEnabled &&
-                                    <CancelButton className='react-fine-uploader-gallery-cancel-button'
-                                        id={id}
-                                        uploader={uploader}
-                                        { ...cancelButtonProps }
-                                    />
-                                }
+                                <CancelButton className='react-fine-uploader-gallery-cancel-button'
+                                    id={id}
+                                    uploader={uploader}
+                                    { ...cancelButtonProps }
+                                />
                                 <RetryButton className='react-fine-uploader-gallery-retry-button'
                                     id={id}
                                     uploader={uploader}
@@ -189,7 +183,6 @@ class Gallery extends Component {
                                     deleteEnabled &&
                                     <DeleteButton className='react-fine-uploader-gallery-delete-button'
                                         id={id}
-                                        onlyRenderIfDeletable={false}
                                         uploader={uploader}
                                         { ...deleteButtonProps }
                                     />
