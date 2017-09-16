@@ -16,11 +16,12 @@ class CancelButton extends Component {
     constructor(props) {
         super(props)
 
-        this.state = { cancelable: true }
-
+        const initialStatus = props.uploader.methods.getUploads({ id: props.id }).status
         const statusEnum = props.uploader.qq.status
 
-        this._onStatusChange = (id, oldStatus, newStatus) => {
+        this.state = { cancelable: isCancelable(initialStatus, statusEnum) }
+
+         this._onStatusChange = (id, oldStatus, newStatus) => {
             if (id === this.props.id && !this._unmounted) {
                 if (!isCancelable(newStatus, statusEnum) && this.state.cancelable) {
                     this.setState({ cancelable: false })
@@ -53,13 +54,13 @@ class CancelButton extends Component {
         if (this.state.cancelable || !onlyRenderIfCancelable) {
             return (
                 <button aria-label='cancel'
-                        className={ `react-fine-uploader-cancel-button ${this.props.className || ''}` }
-                        disabled={ !this.state.cancelable }
-                        onClick={ this.state.cancelable && this._onClick }
-                        type='button'
-                        { ...elementProps }
+                    className={`react-fine-uploader-cancel-button ${this.props.className || ''}`}
+                    disabled={!this.state.cancelable}
+                    onClick={this.state.cancelable && this._onClick}
+                    type='button'
+                    { ...elementProps }
                 >
-                    { content }
+                    {content}
                 </button>
             )
         }
@@ -79,6 +80,7 @@ const isCancelable = (statusToCheck, statusEnum) => {
         statusEnum.QUEUED,
         statusEnum.UPLOAD_RETRYING,
         statusEnum.SUBMITTED,
+        statusEnum.SUBMITTING,
         statusEnum.UPLOADING,
         statusEnum.UPLOAD_FAILED
     ].indexOf(statusToCheck) >= 0
